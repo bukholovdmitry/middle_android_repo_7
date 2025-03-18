@@ -128,7 +128,7 @@ fun ProductDetailsScreen(
                 ) {
                     Icon(
                         Icons.Default.ShoppingCart,
-                        contentDescription = null,
+                        contentDescription = stringResource(R.string.add_to_cart),
                         modifier = Modifier.size(24.dp)
                     )
                     Spacer(modifier = Modifier.width(8.dp))
