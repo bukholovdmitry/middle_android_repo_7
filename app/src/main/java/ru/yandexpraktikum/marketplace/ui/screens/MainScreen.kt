@@ -40,16 +40,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.customActions
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import kotlinx.coroutines.launch
 import ru.yandexpraktikum.marketplace.R
 import ru.yandexpraktikum.marketplace.model.Product
 import ru.yandexpraktikum.marketplace.model.SampleProducts
-import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -95,9 +93,6 @@ fun MainScreen(onProductClick: (Int) -> Unit) {
                 },
                 placeholder = {
                     Text(
-                        modifier = Modifier.semantics {
-                           // contentDescription =
-                        },
                         text = stringResource(R.string.search_products),
                         color = Color(0xFFAAAAAA)
                     )
@@ -146,7 +141,7 @@ fun ProductCard(
         modifier = modifier
             .fillMaxWidth()
             .semantics {
-            // customActions =
+                //
             }
     ) {
         Column {
@@ -194,9 +189,7 @@ fun ProductCard(
                     contentDescription = stringResource(R.string.add_to_cart),
                     tint = Color(0xFFAAAAAA),
                     modifier = Modifier
-                        .clickable(
-                            // onClickLabel =
-                        ) {
+                        .clickable {
                             onAddToCart()
                         }
                         .size(16.dp)

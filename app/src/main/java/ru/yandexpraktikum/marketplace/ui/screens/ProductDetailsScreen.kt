@@ -30,8 +30,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import kotlinx.coroutines.launch
@@ -76,9 +74,6 @@ fun ProductDetailsScreen(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(16.dp)
-                    .semantics(
-                        // mergeDescendants =
-                    ) {}
             ) {
                 AsyncImage(
                     model = product.imageUrl,
@@ -122,9 +117,7 @@ fun ProductDetailsScreen(
                             )
                         }
                     },
-                    modifier = Modifier.fillMaxWidth().semantics {
-                        // contentDescription =
-                    },
+                    modifier = Modifier.fillMaxWidth()
                 ) {
                     Icon(
                         Icons.Default.ShoppingCart,
