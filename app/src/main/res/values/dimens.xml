@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="size_xxs">4dp</dimen>
+    <dimen name="size_s">8dp</dimen>
+    <dimen name="size_l">12dp</dimen>
+    <dimen name="size_xxl">16dp</dimen>
+    <dimen name="size_2l">2dp</dimen>
+    <dimen name="image_details_size">300dp</dimen>
+</resources>
