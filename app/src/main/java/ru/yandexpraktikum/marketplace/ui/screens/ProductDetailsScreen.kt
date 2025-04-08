@@ -29,8 +29,10 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import coil.compose.AsyncImage
 import kotlinx.coroutines.launch
 import ru.yandexpraktikum.marketplace.R
@@ -67,47 +69,49 @@ fun ProductDetailsScreen(
             SnackbarHost(hostState = snackbarHostState)
         }
     ) { paddingValues ->
-        Box(modifier = Modifier
-            .padding(paddingValues)
+        Box(
+            modifier = Modifier
+                .padding(paddingValues)
         ) {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(16.dp)
+                    .padding(dimensionResource(R.dimen.size_xxl))
+                    .semantics(mergeDescendants = true) {}
             ) {
                 AsyncImage(
                     model = product.imageUrl,
-                    contentDescription = null,
+                    contentDescription = product.name,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(300.dp),
+                        .height(dimensionResource(R.dimen.image_details_size)),
                     contentScale = ContentScale.Crop
                 )
-                
-                Spacer(modifier = Modifier.height(16.dp))
-                
+
+                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.size_xxl)))
+
                 Text(
                     text = product.name,
                     style = MaterialTheme.typography.headlineMedium
                 )
-                
-                Spacer(modifier = Modifier.height(8.dp))
-                
+
+                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.size_s)))
+
                 Text(
                     text = stringResource(R.string.price_format, product.price),
                     style = MaterialTheme.typography.titleLarge
                 )
-                
-                Spacer(modifier = Modifier.height(16.dp))
-                
+
+                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.size_xxl)))
+
                 Text(
                     text = product.description,
                     style = MaterialTheme.typography.bodyLarge
                 )
-                
+
                 Spacer(modifier = Modifier.weight(1f))
 
-                // val buttonDescription = stringResource(R.string.add_product_to_cart, product.name)
+                val buttonDescription = stringResource(R.string.add_product_to_cart, product.name)
                 Button(
                     onClick = {
                         scope.launch {
@@ -117,14 +121,18 @@ fun ProductDetailsScreen(
                             )
                         }
                     },
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .semantics {
+                            contentDescription = buttonDescription
+                        }
                 ) {
                     Icon(
                         Icons.Default.ShoppingCart,
                         contentDescription = stringResource(R.string.add_to_cart),
-                        modifier = Modifier.size(24.dp)
+                        modifier = Modifier.size(dimensionResource(R.dimen.size_2l))
                     )
-                    Spacer(modifier = Modifier.width(8.dp))
+                    Spacer(modifier = Modifier.width(dimensionResource(R.dimen.size_s)))
                     Text(text = stringResource(R.string.add_to_cart))
                 }
             }
